@@ -1,0 +1,28 @@
+// $dark: #12485a;
+// $light: #f9f7f7;
+// $warm: #DF6C53;
+// $secondary: #36718f;
+
+// @import "~bootstrap/scss/_functions.scss"; 
+// @import "~bootstrap/scss/_variables.scss";   //then import native bootstrap variables
+
+// $custom-colors: ( 
+//     "warm": $warm, 
+// );
+
+// $theme-colors: map-merge($theme-colors, $custom-colors);
+
+@import '~bootstrap/scss/bootstrap.scss';
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: "Golos Text", sans-serif;
+}
+
+main {
+  margin-bottom: auto;
+  height: 100%;
+}

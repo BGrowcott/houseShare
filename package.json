@@ -1,0 +1,26 @@
+{
+  "name": "houseshare",
+  "version": "1.0.0",
+  "description": "Web application for managing your houseshare.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server/server.js --ignore client",
+    "dev": "concurrently \"cd server && nodemon\" \"cd client && npm start\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "seed": "cd server && npm run seed",
+    "build": "cd client && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BGrowcott/houseshare.git"
+  },
+  "author": "Ben Growcott",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BGrowcott/houseshare/issues"
+  },
+  "homepage": "https://github.com/BGrowcott/houseshare#readme",
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}
