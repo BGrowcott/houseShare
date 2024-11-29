@@ -1,6 +1,6 @@
 function Footer () {
     return (
-        <footer>
+        <footer className="bg-light text-center fs-4 p-3">
             Footer
         </footer>
     )

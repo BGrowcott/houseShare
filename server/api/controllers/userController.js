@@ -5,21 +5,23 @@ module.exports = {
     async login(req, res) {
         const { email, password } = req.body;
         try {
-            const user = await User.findOne({ email });
-            console.log(user);
+            const user = await User.findOne({ email }).exec();
+            console.log(user)
             if (!user) {
-                throw new Error("Incorrect credentials");
+                res.status(400).json({message: "Email or password is incorrect"});
+                return;
             }
 
             const correctPw = await user.isCorrectPassword(password);
 
             if (!correctPw) {
-                throw new Error("Incorrect credentials");
+                res.status(400).json({message: "Email or password is incorrect"});
+                return;
             }
 
             const token = signToken(user);
-
             res.json(token);
+
         } catch (error) {
             res.status(500).json({message: error.message});
         }
@@ -28,8 +30,13 @@ module.exports = {
         const { email, password } = req.body;
 
         try {
+            const userExists = await User.findOne({ email }).exec();
+            if (userExists) {
+                res.status(409).json({message: "User with that email already exsists."});
+            }
             const user = await User.create({ email, password });
             const token = signToken(user);
+            console.log(user);
             res.json(token);
         } catch (error) {
             res.status(500).json({message: error.message});

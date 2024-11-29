@@ -1,7 +1,22 @@
+import AuthService from "../../utils/AuthService";
+
 function Home() {
+
+    const user = AuthService.getProfile();
+
+    const logout = (e) => {
+        e.preventDefault();
+        AuthService.logout();
+       window.location.replace("/")
+    };
+
     return (
-        <div>
-            <h1>Hello World</h1>
+        <div className="container-xxl">
+            <h1>Hello {user.data.email}</h1>
+            <button onClick={logout}>Log out</button>
+            <div className="row">
+
+            </div>
         </div>
     )
 };
