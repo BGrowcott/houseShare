@@ -6,7 +6,7 @@ module.exports = {
         const { email, password } = req.body;
         try {
             const user = await User.findOne({ email }).exec();
-            console.log(user)
+
             if (!user) {
                 res.status(400).json({message: "Email or password is incorrect"});
                 return;
@@ -27,14 +27,14 @@ module.exports = {
         }
     },
     async signup(req, res) {
-        const { email, password } = req.body;
+        const { email, password, username } = req.body;
 
         try {
             const userExists = await User.findOne({ email }).exec();
             if (userExists) {
                 res.status(409).json({message: "User with that email already exsists."});
             }
-            const user = await User.create({ email, password });
+            const user = await User.create({ email, password, username });
             const token = signToken(user);
             console.log(user);
             res.json(token);

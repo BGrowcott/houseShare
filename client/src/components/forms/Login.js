@@ -44,20 +44,22 @@ const Login = () => {
         <div>
             <h2>Log In</h2>
             <form onSubmit={submitForm} className="form">
-                <label className="form-label" htmlFor="email">
+                <label className="form-label" htmlFor="email-login">
                     Email:
                 </label>
                 <input
+                    id="email-login"
                     className="form-control"
                     type="email"
                     name="email"
                     onChange={handleFormInput}
                     value={formState ? formState.email : ""}
                 ></input>
-                <label className="form-label" htmlFor="password">
+                <label className="form-label" htmlFor="password-login">
                     Password:
                 </label>
                 <input
+                    id="password-login"
                     className="form-control"
                     type="password"
                     name="password"
