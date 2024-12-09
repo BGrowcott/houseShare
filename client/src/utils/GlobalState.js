@@ -7,7 +7,7 @@ const { Provider } = GlobalContext;
 const GlobalProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useGlobalReducer({
     setModalExample: false,
-    reviews: []
+    house: false
   });
 
   return <Provider value={[state, dispatch]} {...props} />;

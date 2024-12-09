@@ -55,6 +55,7 @@ const Signup = () => {
 					name="email"
 					onChange={handleFormInput}
 					value={formState ? formState.email : ""}
+                    required
 				></input>
 				<label className="form-label" htmlFor="username">
 					Username

@@ -1,2 +1,2 @@
 export const SHOW_MODAL_EXAMPLE = "SHOW_MODAL_EXAMPLE"
-export const LOAD_REVIEWS = "LOAD_REVIEWS"
+export const LOAD_HOUSE = "LOAD_HOUSE"

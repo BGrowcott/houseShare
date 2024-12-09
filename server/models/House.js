@@ -7,8 +7,13 @@ const houseSchema = new Schema(
 			required: true,
 			trim: true,
 		},
-		housemates: [{ type: Schema.Types.ObjectId, ref: "user" }],
-        landlord: { type: Schema.Types.ObjectId, ref: "user" }
+        about: String,
+		houseMembers: [{ type: Schema.Types.ObjectId, ref: "user" }],
+        joinCode: {
+            type: String,
+            required: true,
+            unique: true
+        },
 	},
 	{
 		timestamps: true,

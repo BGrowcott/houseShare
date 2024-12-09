@@ -1,5 +1,5 @@
 import { useReducer } from "react";
-import { LOAD_REVIEWS, SHOW_MODAL_EXAMPLE } from "./actions";
+import { LOAD_HOUSE, SHOW_MODAL_EXAMPLE } from "./actions";
 
 export const reducer = (state, action) => {
 	switch (action.type) {
@@ -9,10 +9,10 @@ export const reducer = (state, action) => {
 				setModalExample: !state.setModalExample,
 			};
 
-		case LOAD_REVIEWS:
+		case LOAD_HOUSE:
 			return {
 				...state,
-				reviews: [...action.reviews],
+				house: action.house,
 			};
 
 		default:
