@@ -23,7 +23,6 @@ function CreateHouse() {
 			if (response.status !== 200) {
 				throw data;
 			}
-            
 		} catch (error) {
 			console.log(error);
 			setErrorMessage(error.message);
@@ -72,6 +71,7 @@ function CreateHouse() {
 									className="form-control"
 									id="about"
 									name="about"
+									placeholder="A brief, fun description or statement about the house"
 								></textarea>
 							</div>
 						</div>
@@ -81,6 +81,9 @@ function CreateHouse() {
 								Submit
 							</button>
 						</div>
+					</div>
+					<div>
+						<p className="text-danger">{errorMessage}</p>
 					</div>
 				</form>
 			</div>

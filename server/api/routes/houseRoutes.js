@@ -4,10 +4,13 @@ const {
     createHouse,
     getHouseForUser,
     updateHouse,
-    deleteHouse
+    deleteHouse,
+    joinHouse
 } = require('../controllers/houseController')
 
 router.route('/').get(getHouseForUser).post(createHouse);
+
+router.route('/join-house').post(joinHouse)
 
 router
   .route('/:id')

@@ -9,6 +9,8 @@ const houseSchema = new Schema(
 		},
         about: String,
 		houseMembers: [{ type: Schema.Types.ObjectId, ref: "user" }],
+		pendingHouseMembers: [{ type: Schema.Types.ObjectId, ref: "user" }],
+		exHouseMembers: [{ type: Schema.Types.ObjectId, ref: "user" }],
         joinCode: {
             type: String,
             required: true,

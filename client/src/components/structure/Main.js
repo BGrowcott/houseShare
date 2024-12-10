@@ -10,9 +10,7 @@ import { LOAD_HOUSE } from "../../utils/actions";
 function Main() {
 
 	const [state, dispatch] = useGlobalContext();
-
-	console.log(state.house)
-
+	
 	useEffect(() => {
 
 		if (!AuthService.loggedIn()) {
@@ -30,10 +28,9 @@ function Main() {
 					method: "get",
 				});
 				const json = await res.json();
-				console.log(json);
 				dispatch({ type: LOAD_HOUSE, house: {...json} });
 			} catch (error) {
-				console.log(error);
+				console.log({error});
 			}
 		})();
 	}, []);
