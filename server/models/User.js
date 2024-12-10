@@ -20,9 +20,9 @@ const userSchema = new Schema(
 			trim: true,
 		},
 		roles: {
-      type: [{ type: Schema.Types.ObjectId, ref: "role" }],
-      required: true
-    },
+			type: [{ type: Schema.Types.ObjectId, ref: "role" }],
+			required: true,
+		},
 		house: {
 			type: Schema.Types.ObjectId,
 			ref: "house",

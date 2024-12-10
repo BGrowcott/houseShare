@@ -1,4 +1,4 @@
-const { House, User } = require("../../models");
+const { House, User, NoticeBoard } = require("../../models");
 const { v4: uuidv4 } = require("uuid");
 
 module.exports = {
@@ -19,8 +19,12 @@ module.exports = {
 			}
 
 			const house = await House.create({ ...req.body, joinCode: uuidv4() });
+			const noticeBoard = await NoticeBoard.create({house: house._id});
+			house.noticeBoard = noticeBoard._id;
+			noticeBoard.house = house._id;
 			house.houseMembers.push({ _id: req.user._id });
 			await house.save();
+			await noticeBoard.save();
 
 			const user = await User.findById(req.user._id);
 			user.house = house._id;
@@ -68,7 +72,6 @@ module.exports = {
 	},
 
 	async getHouseForUser(req, res) {
-
 		console.log("hi");
 
 		try {

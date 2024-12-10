@@ -7,10 +7,11 @@ const houseSchema = new Schema(
 			required: true,
 			trim: true,
 		},
-        about: String,
+        about: { type: String, required: true},
 		houseMembers: [{ type: Schema.Types.ObjectId, ref: "user" }],
 		pendingHouseMembers: [{ type: Schema.Types.ObjectId, ref: "user" }],
 		exHouseMembers: [{ type: Schema.Types.ObjectId, ref: "user" }],
+		noticeBoard: { type: Schema.Types.ObjectId, ref: "noticeBoard" },
         joinCode: {
             type: String,
             required: true,

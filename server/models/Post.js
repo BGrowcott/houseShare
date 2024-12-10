@@ -13,6 +13,7 @@ const postSchema = new Schema(
 			trim: true,
 		},
 		user: { type: Schema.Types.ObjectId, ref: "user" },
+		comments: [{ type: Schema.Types.ObjectId, ref: "comment" }],
 	},
 	{
 		timestamps: true,
