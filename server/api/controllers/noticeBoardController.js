@@ -9,10 +9,20 @@ module.exports = {
 			}
 
 			const board = await NoticeBoard.findById(req.body.boardId)
-				.populate({
-					path: "posts",
-					populate: { path: "comments", populate: { path: "user", select: "username" } },
-				})
+				.populate([
+					{
+						path: "posts",
+						populate: [
+							{ 
+								path: "comments", populate: { path: "user", select: "username" } 
+							},
+							{
+								path: "user",
+								select: "username"
+							},
+						],
+					},
+				])
 				.exec();
 
 			res.json(board);
@@ -54,24 +64,21 @@ module.exports = {
 				return;
 			}
 
-			console.log("hello")
+			console.log("hello");
 
 			const post = await Post.findById(req.body.postId);
-			console.log("hello")
+			console.log("hello");
 			const comment = await Comment.create({
 				post: post._id,
 				content: req.body.commentContent,
-				user: req.user._id
+				user: req.user._id,
 			});
-			console.log("hello")
+			console.log("hello");
 			await comment.save();
 			post.comments.push(comment._id);
 			await post.save();
 
 			res.status(201).json(comment);
-
-		} catch (error) {
-
-		}
+		} catch (error) {}
 	},
 };

@@ -47,14 +47,19 @@ function NoticeBoard() {
 								<div className="card-header fw-bold">{post.title}</div>
 								<div className="card-body">
 									<p className="card-text">{post.content}</p>
+									<p></p>
+									<hr></hr>
+
+									<div>
+										<h4 className="h6 fw-bold">Comments:</h4>
+										{post.comments.map((comment) => (
+											<div key={comment._id} className="p-3 border-bottom">
+												<p>{comment.content}</p>
+											</div>
+										))}
+									</div>
 								</div>
-								<div>
-									{post.comments.map(comment => (
-										<div>
-											<p>{comment.content}</p>
-										</div>
-									))}
-								</div>
+
 								<div className="card-footer">
 									<NewComment post={post} board={board} setBoard={setBoard}></NewComment>
 								</div>
