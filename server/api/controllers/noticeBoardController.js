@@ -2,18 +2,22 @@ const { House, User, NoticeBoard, Post, Comment } = require("../../models");
 
 module.exports = {
 	async getNoticeBoard(req, res) {
-		try {            
+		try {
 			if (!req.user) {
 				res.status(401).json({ message: "Please log in" });
 				return;
 			}
 
 			const board = await NoticeBoard.findById(req.body.boardId)
-				.populate({ path: "posts", populate: { path: "comments" } })
+				.populate({
+					path: "posts",
+					populate: { path: "comments", populate: { path: "user", select: "username" } },
+				})
 				.exec();
 
 			res.json(board);
 		} catch (error) {
+			console.log(error);
 			res.status(500).json(error);
 		}
 	},
@@ -38,7 +42,36 @@ module.exports = {
 
 			res.status(201).json(post);
 		} catch (error) {
+			console.log(error);
 			res.status(500).json(error);
+		}
+	},
+
+	async createComment(req, res) {
+		try {
+			if (!req.user) {
+				res.status(401).json({ message: "Please log in" });
+				return;
+			}
+
+			console.log("hello")
+
+			const post = await Post.findById(req.body.postId);
+			console.log("hello")
+			const comment = await Comment.create({
+				post: post._id,
+				content: req.body.commentContent,
+				user: req.user._id
+			});
+			console.log("hello")
+			await comment.save();
+			post.comments.push(comment._id);
+			await post.save();
+
+			res.status(201).json(comment);
+
+		} catch (error) {
+
 		}
 	},
 };
